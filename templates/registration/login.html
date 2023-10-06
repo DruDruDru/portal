@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+<title>{% block title %}Вход | {% endblock %}</title>
+
+{% block content %}
+
+    <form method="post" action="{% url 'login' %}" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+    {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    {{ form.username.label_tag }}<br>
+                    {{ form.username }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_password">Пароль:</label><br>
+                    {{ form.password }}
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Войти">
+    </form>
+    {% if form.errors %}
+        <p style="color: red;"><strong>Ваш логин или пароль не подходит</strong></p>
+    {% endif %}
+
+{% endblock %}

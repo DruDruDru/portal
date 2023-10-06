@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+<title>{% block title %}Удалить | {% endblock %}</title>
+
+{% block content %}
+    <div>
+        <ol>
+        {% for claim in claims %}
+            <li><a href="{% url 'delete_claim_confirm' claim.pk %}">{{ claim.title }}, {{ claim.description }}, {{ claim.category.all|join:", " }},
+                                    {% if claim.status == 'в'  %}
+                                            Выполнено
+                                    {% elif claim.status == 'н' %}
+                                            Новая
+                                    {% elif claim.status == 'п' %}
+                                            Принято в работу
+                                    {% endif %}
+            </a></li>
+        {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base_generic.html' %}
+
+<title>{% block title %}Профиль | {% endblock %}</title>
+
+{% block content %}
+    <div style="display: flex; flex-direction: row; gap: 50px">
+        <div>
+             <div>
+                <div>
+                    <h2><strong>Профиль: </strong></h2>
+                </div>
+                <div>
+                    <h2>{{ user.username }}</h2>
+                    <hr>
+                    <p style="font-size: 2.1rem;">
+                        {% if user.last_name %}
+                            {{ user.last_name }}
+                        {% endif %}
+                        {% if user.first_name %}
+                            {{ user.first_name }}
+                        {% endif %}
+                        {% if user.patronymic %}
+                            {{ user.patronymic }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div>
+                <p style="font-size: 2.1rem;">Ваши заявки: </p>
+                {% if claims %}
+                    {% for claim in claims %}
+                        <div class="card">
+                            <img src="{% if claim.image %}{{ claim.image.url }}{% else %}../media/images/nophoto.jpg{% endif %}" alt="(" class="card-image"/>
+                            <div style="display: flex; flex-direction: row;">
+                                <ul>
+                                    <li>{{ claim.title }}</li>
+                                    <li>{{ claim.category.all|join:", " }}</li>
+                                    <li>{{ claim.updated_at }}</li>
+                                </ul>
+                                <ul>
+                                    <li>{{ claim.description }}</li>
+                                    {% if claim.status == 'в'  %}
+                                        <li>Выполнено</li>
+                                    {% elif claim.status == 'н' %}
+                                        <li>Новая</li>
+                                    {% elif claim.status == 'п' %}
+                                        <li>Принято в работу</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Тут ничего</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'create_claim' %}">Создать заявку</a>
+            <a href="{% url 'delete_claim' %}">Удалить заявку</a>
+            {% if request.user.is_staff %}
+                <a href="{% url 'update_list' %}">Изменить заявку</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

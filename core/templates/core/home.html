@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+<title>{% block title %}Главная | {% endblock %}</title>
+
+{% block content %}
+    <div class="start__main-content">
+        <h1>Добро пожаловать!</h1>
+        <p>Вы на главной странице сайта Design.pro</p>
+        <hr>
+        {% if user.is_authenticated %}
+            <p style="font-size: 2.1rem;"> Добро пожаловать, {{ user.username }}! </p>
+        {% else %}
+            <p>Что бы задать вопрос специалисту по дизайну вы должны
+                <a href="{% url 'sighup' %}">зарегистрироваться</a> или
+                <a href="{% url 'login' %}">войти</a> в аккаунт
+            </p>
+        {% endif %}
+        <p>Всего записей со статусом: <strong>Выполнено</strong> {{ claims_count }}</p>
+        {% if claims %}
+            <div class="cards">
+                {% for claim in claims %}
+                    <div class="card">
+                        <img src="{% if claim.image %}{{ claim.image.url }}{% else %}../media/images/nophoto.jpg{% endif %}" alt="(" class="card-image"/>
+                        <div>
+                            <p>{{ claim.title }}</p>
+                            <p>{{ claim.category.all|join:", " }}</p>
+                            <p>{{ claim.updated_at }}</p>
+                            <p>{{claim.description}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Нет записей</p>
+        {% endif %}
+    </div>
+{% endblock %}

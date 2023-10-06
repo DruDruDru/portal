@@ -1,0 +1,76 @@
+body > div:last-child {
+    padding-bottom: 50px;
+}
+.header-nav {
+    background-color: #ADD8E6;
+}
+.header-nav nav {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: right;
+    padding: 25px;
+}
+.header-nav nav a, a {
+    font-size: 2.1rem;
+    background-color: #00FFC0;
+    border-radius: 50%;
+    padding: 0.25em;
+}
+body div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card-image {
+    width: 550px;
+    height: 350px;
+    border-radius: 15px;
+    z-index: 1;
+    position: relative;
+}
+.card > div {
+    background-color: #999999;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-top: -80px;
+    z-index: 2;
+    position: relative;
+    width: 550px;
+    height: 80px;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+}
+.card p, .card a  {
+    font-size: 1.5rem;
+    margin: 0;
+}
+form {
+    padding: 50px;
+}
+input {
+    width: 325px;
+    border-radius: 15px;
+    height: 50px;
+    font-size: 2.1rem;
+}
+textarea {
+    resize: none;
+}
+table {
+    margin-bottom: 15px;
+}
+input[type="checkbox"] { height: 15px; width: 15px}
+.pagination a {
+    font-size: 1.5rem;
+}
+input[type="file"] {
+    border-radius: 0;
+    width: 250px;
+    height: 22px;
+}

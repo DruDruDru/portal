@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+<title>{% block title %}Заявка | {% endblock %}</title>
+
+{% block content %}
+
+    <div>
+        <h2>Создание заявки</h2>
+
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+
+{% endblock %}
